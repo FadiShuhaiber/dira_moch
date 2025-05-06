@@ -47,7 +47,7 @@ def send_email(value):
     password = "aagx rgid mnow ljjh"
 
     #password = "Automation102030!#"  # Use an app-specific password
-    receiver = "fadi_sh11@hotmail.com, naief.espanioli@gmail.com, nabih_1998@hotmail.com "
+    receiver = "fadi_sh11@hotmail.com, naief.espanioli@gmail.com, nabih_1998@hotmail.com, zaidab1997@gmail.com "
     
     msg = MIMEMultipart("alternative")
     msg['Subject'] = "🟢 Project Update – Meher Lemishtaken"
