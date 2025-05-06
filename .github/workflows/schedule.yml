@@ -3,7 +3,7 @@ name: Run Sotiris Bot
 on:
   schedule:
     - cron: '0 8 * * *'   # 10:00 AM Israel time
-    - cron: '32 11 * * *'  # 5:00 PM Israel time
+    - cron: '38 11 * * *'  # 5:00 PM Israel time
   workflow_dispatch:
 
 jobs:
