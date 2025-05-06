@@ -8,11 +8,18 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import time
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
+options = Options()
+options.add_argument("--headless")  # Ensure Chrome runs in headless mode (without GUI)
+options.add_argument("--no-sandbox")  # Prevents errors on GitHub Actions
+options.add_argument("--disable-dev-shm-usage"
+                     
 # Step 1: Open Chrome
-driver = webdriver.Chrome()
+driver = webdriver.Chrome(options=options)
 driver.get("https://www.dira.moch.gov.il/ProjectsList")
-driver.maximize_window()
+#driver.maximize_window()
 
 # Step 2: Click the "אישור" button
 try:
