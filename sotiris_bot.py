@@ -14,7 +14,7 @@ from selenium.webdriver.chrome.options import Options
 options = Options()
 options.add_argument("--headless")  # Ensure Chrome runs in headless mode (without GUI)
 options.add_argument("--no-sandbox")  # Prevents errors on GitHub Actions
-options.add_argument("--disable-dev-shm-usage"
+options.add_argument("--disable-dev-shm-usage")
                      
 # Step 1: Open Chrome
 driver = webdriver.Chrome(options=options)
