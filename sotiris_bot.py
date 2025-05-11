@@ -10,6 +10,7 @@ from email.mime.text import MIMEText
 import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.common.exceptions import TimeoutException
 
 options = Options()
 options.add_argument("--headless")  # Ensure Chrome runs in headless mode (without GUI)
@@ -20,6 +21,11 @@ options.add_argument("--disable-dev-shm-usage")
 driver = webdriver.Chrome(options=options)
 driver.get("https://www.dira.moch.gov.il/ProjectsList")
 #driver.maximize_window()
+
+def wait_for_non_empty_text(by, value, timeout=15):
+    return WebDriverWait(driver, timeout).until(
+        lambda d: d.find_element(by, value).text.strip() != ""
+    )
 
 # Step 2: Click the "אישור" button
 try:
@@ -33,11 +39,12 @@ except Exception as e:
 
 # Step 3: Get the number value
 try:
-    count_element = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "b.blue-label.col-md-1.count.ng-binding")))
+    wait_for_non_empty_text(By.CSS_SELECTOR, "b.blue-label.col-md-1.count.ng-binding")
+    count_element = driver.find_element(By.CSS_SELECTOR, "b.blue-label.col-md-1.count.ng-binding")
     number_value = count_element.text.strip()
     print(f"Number value found: {number_value}")
-except Exception as e:
-    print("Failed to get the number:", e)
+except TimeoutException:
+    print("Timeout: Number value not found or empty.")
     driver.quit()
     exit()
 
